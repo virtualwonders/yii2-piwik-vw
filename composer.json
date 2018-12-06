@@ -1,0 +1,21 @@
+{
+    "name": "virtualwonders/yii2-piwik-vw",
+    "description": "Piwik API extension for Yii 2",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dave",
+            "email": "dave@virtual-wonders.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "virtualwonders\\piwikvw\\": ""
+        }
+    }
+}
