@@ -101,6 +101,15 @@ class PiwikAPI extends Component
     }
 
     /**
+     * Use this setter to modify the current value of `user_token` property which current value is the admin token by default
+     * @param $token
+     */
+    public function setUserToken($token)
+    {
+        $this->user_token = $token;
+    }
+
+    /**
      * Connects to Piwik API and returns a JSON string
      * @param $method
      * @param array $params
