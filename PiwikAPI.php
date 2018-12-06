@@ -44,7 +44,7 @@ class PiwikAPI extends Component
     const GET_SITES_ID_WITH_ATLEAST_VIEW_ACCESS = '.getSitesIdWithAtLeastViewAccess';
 
     // User Manager Method
-    const UsersManager = 'UsersManager';
+    const USERS_MANAGER = 'UsersManager';
 
     const ADD_USER          = '.addUser';
     const UPDATE_USER       = '.updateUser';
@@ -63,6 +63,8 @@ class PiwikAPI extends Component
     const GET_USERS_SITES_FROM_ACCESS = '.getUsersSitesFromAccess';
 
     // Visits Summary Method
+    const VISITS_SUMMARY = 'VisitsSummary';
+
     const GET = '.get';
     const GET_VISITS = '.getVisits';
     const GET_UNIQUE_VISITORS = '.getUniqueVisitors';
@@ -90,6 +92,7 @@ class PiwikAPI extends Component
      */
     public function init()
     {
+        // Use admin token when `token_auth` property is null
         $this->token_auth = is_null($this->user_token) ? Yii::$app->params['piwikApiKey'] : $this->user_token;
         $this->piwik_endpoint = Yii::$app->params['piwikUrl'];
 

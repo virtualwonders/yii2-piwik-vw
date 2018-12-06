@@ -1,7 +1,6 @@
 <?php
 
-
-namespace common\components;
+namespace virtualwonders\piwikvw;
 
 
 class PiwikSitesManager extends PiwikAPI
