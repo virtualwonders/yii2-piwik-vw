@@ -13,9 +13,6 @@ use yii\base\Exception;
  */
 class PiwikAPI extends Component
 {
-    // Piwik error message on failed authentication
-    const TOKEN_FAILED = 'Token authentication failed, please contact administrator.';
-
     // Referrers Method
     const REFERRERS = 'Referrers';
 
@@ -149,5 +146,65 @@ class PiwikAPI extends Component
         {
             return $result;
         }
+    }
+
+    /**
+     * @NOTE Call this functions only when you manually define the value of the `user_token` property
+     * `user_token` by default will use the value from the Yii::$app->params['piwikUrl'] which contains
+     *  the administrator token. In case you intend to set the token for an specific user see example
+     * php--
+     * -- Initialize PiwikAPI
+     * $piwik = Yii::$app->piwik;
+     * -- Get the client piwik token using this function
+     * $token = Yii::$app->settings->getUserPiwikToken(USER ID OF A CLIENT);
+     * -- Set the new token for the PiwikAPI Class Object
+     * $piwik->setUserToken($token);
+     *
+     * After this process you can now call the following methods to initialize sub classes of the PiwikAPI class
+     *
+     * $piwik->referrer()->functionName() @see \virtualwonders\piwikvw\PiwikReferrers
+     * $piwik->siteManager()->functionName()  @see \virtualwonders\piwikvw\PiwikSitesManager
+     * $piwik->userManager()->functionName()  @see \virtualwonders\piwikvw\PiwikUsersManager
+     * $piwik->visitSummary()->functionName()  @see \virtualwonders\piwikvw\PiwikVisitsSummary
+     */
+
+    /**
+     * @return PiwikReferrers
+     */
+    public function referrer()
+    {
+        return new PiwikReferrers([
+            'user_token' => $this->user_token
+        ]);
+    }
+
+    /**
+     * @return PiwikSitesManager
+     */
+    public function siteManager()
+    {
+        return new PiwikSitesManager([
+            'user_token' => $this->user_token
+        ]);
+    }
+
+    /**
+     * @return PiwikUsersManager
+     */
+    public function userManager()
+    {
+        return new PiwikUsersManager([
+            'user_token' => $this->user_token
+        ]);
+    }
+
+    /**
+     * @return PiwikVisitsSummary
+     */
+    public function visitSummary()
+    {
+        return new PiwikVisitsSummary([
+            'user_token' => $this->user_token
+        ]);
     }
 }
