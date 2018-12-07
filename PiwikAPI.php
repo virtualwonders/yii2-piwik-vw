@@ -107,6 +107,8 @@ class PiwikAPI extends Component
     public function setUserToken($token)
     {
         $this->user_token = $token;
+        // Reinitialize the component to forcibly apply the custom set token
+        $this->init();
     }
 
     /**
